@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>「シン・探せいとかい：II」</title>
+
+        <!-- by inval: enhanced font imports with Dela Gothic One and M PLUS Rounded 1c for consistent aesthetic -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Reggae+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="プロジェクトデザイン.css">
+        <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    </head>
+
+    <body>
+
+        <main class="container">
+            <!-- by inval: added id to title for dynamic localization -->
+            <h1 id="pageTitle">「シン・探せいとかい：II」</h1>
+            <div id="stampTray" class="stamp-tray hidden" aria-live="polite"></div>
+
+            <!-- Main Menu Screen -->
+            <div id="menuScreen" class="screen">
+                <div class="menu-content">
+                    <p id="menuText" class="menu-text">ようこそ！このゲームをプレイしますか？</p>
+
+                    <div class="language-row">
+                        <label for="languageSelect" class="language-label">Language</label>
+                        <select id="languageSelect" class="language-select">
+                            <option value="ja">日本語</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rules-box">
+                        <h2 id="rulesTitle" class="rules-title">ゲームルール</h2>
+                        <ul id="rulesList" class="rules-list">
+                            <li>全16組の謎解きに挑戦！4組クリアで認定スタンプをGET！🔍✨</li>
+                            <li>各問題に対して正しい答えを入力してください</li>
+                            <li>1ページに2問ずつ出題され、1問目を正解すると2問目が開きます</li>
+                            <li>2問正解するごとにスタンプが1つ増えます（全部で4つ！）</li>
+                            <li>すべてのなぞなぞ景品をGET!!!しよう！</li>
+                            <li>毎回異なる問題が出題されます</li>
+                        </ul>
+                    </div>
+
+                    <p id="menuDescription" class="menu-description" data-ja="ランダムで選ばれた問題をすべて解いてみよう！" data-en="Solve the randomly picked riddles!">ランダムで選ばれた問題をすべて解いてみよう！</p>
+                    <button id="startGameBtn" onclick="startGame()" class="btn-primary" data-callout="Let's Go!">ゲーム開始！</button>
+                </div>
+            </div>
+
+            <!-- Question Screen: 2 questions per page -->
+            <div id="questionScreen" class="screen hidden">
+                <p id="questionNumber">ページ #1 / 4</p>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <div id="questionPair" class="question-pair"></div>
+            </div>
+
+            <!-- Intermediate Code Input Screen (Between Questions) -->
+            <!-- by inval: added explicit IDs to intermediate elements for localization -->
+            <div id="intermediateCodeScreen" class="screen hidden">
+                <div class="code-content">
+                    <p id="intermediateCodeTitle" class="code-title">正解です！</p>
+
+                    <!-- ADDED: Previous Answer Display Container -->
+                    <div id="previousAnswerBox" class="previous-answer-box" style="background: rgba(255, 255, 255, 0.9); border: 2px dashed #4a90e2; padding: 12px; border-radius: 10px; margin: 15px 0;">
+                        <p id="previousAnswerLabel" style="margin: 0 0 5px 0; font-size: 0.9em; color: #555;">前回の答え / Previous Answer:</p>
+                        <p id="previousAnswerText" style="margin: 0; font-weight: bold; font-size: 1.2em; color: #333;"></p>
+                    </div>
+
+                    <p id="intermediateCodeDescription" class="code-description">次の問題に進むため、コードを入力またはスキャンしてください</p>
+                    
+
+                    <!-- This is the damn password dont ever change it into text for gods sake-->
+                    <div class="code-input-section">
+                        <p id="intermediateManualLabel" class="code-label">手動でコードを入力:</p>
+                        <input
+                         type="password"
+                         id="intermediateCodeInput"
+                         placeholder="コードを入力してください"
+                         class="code-input"
+                         autocomplete="off"
+                         autocapitalize="characters"
+                         >
+                        <button id="intermediateSubmitBtn" onclick="submitIntermediateCode()" class="btn-primary" data-callout="Submit Code!">コード送信</button>
+                    </div>
+
+                    <div class="qr-section">
+                        <p id="intermediateQrLabel" class="qr-label">またはQRコードをスキャン:</p>
+                        <button onclick="toggleIntermediateQRScanner()" class="btn-secondary" id="intermediateQrToggleBtn" data-callout="QR Scanner!">QRスキャナーを開く</button>
+                        
+                        <div id="intermediateQrScannerContainer" class="qr-scanner-container hidden">
+                            <video id="intermediateQrVideo" class="qr-video"></video>
+                            <canvas id="intermediateQrCanvas" class="hidden"></canvas>
+                            <p id="intermediateQrScannerStatus" class="qr-status">カメラをアクセス中...</p>
+                            <button id="intermediateQrCloseBtn" onclick="stopIntermediateQRScanner()" class="btn-secondary" data-callout="Close Scanner!">スキャンを閉じる</button>
+                        </div>
+                    </div>
+
+                    <p id="intermediateCodeResult"></p>
+                </div>
+            </div>
+
+            <!-- Final Code Input Screen -->
+            <!-- by inval: added explicit IDs to final screen elements for localization -->
+            <div id="codeScreen" class="screen hidden">
+                <div class="code-content">
+                    <p id="finalCodeTitle" class="code-title">やったね！全問題をクリアしました！</p>
+
+                    <!-- ADDED: Previous Answer Display Container for Final Screen -->
+                    <div id="finalPreviousAnswerBox" class="previous-answer-box" style="background: rgba(255, 255, 255, 0.9); border: 2px dashed #4a90e2; padding: 12px; border-radius: 10px; margin: 15px 0;">
+                        <p id="finalPreviousAnswerLabel" style="margin: 0 0 5px 0; font-size: 0.9em; color: #555;">前回の答え / Previous Answer:</p>
+                        <p id="finalPreviousAnswerText" style="margin: 0; font-weight: bold; font-size: 1.2em; color: #333;"></p>
+                    </div>
+
+                    <p id="finalCodeDescription" class="code-description">最後のステップです。最終コードを入力またはスキャンしてください</p>
+                    
+                    <div class="code-input-section">
+                        <p id="finalManualLabel" class="code-label">手動でコードを入力:</p>
+                        <input
+                         type="text"
+                         id="codeInput"
+                         placeholder="コードを入力してください"
+                         class="code-input"
+                         >
+                        <button id="finalSubmitBtn" onclick="submitCode()" class="btn-primary" data-callout="Submit Code!">コード送信</button>
+                    </div>
+
+                    <div class="qr-section">
+                        <p id="finalQrLabel" class="qr-label">またはQRコードをスキャン:</p>
+                        <button onclick="toggleQRScanner()" class="btn-secondary" id="qrToggleBtn" data-callout="QR Scanner!">QRスキャナーを開く</button>
+                        
+                        <div id="qrScannerContainer" class="qr-scanner-container hidden">
+                            <video id="qrVideo" class="qr-video"></video>
+                            <canvas id="qrCanvas" class="hidden"></canvas>
+                            <p id="qrScannerStatus" class="qr-status">カメラをアクセス中...</p>
+                            <button id="finalQrCloseBtn" onclick="stopQRScanner()" class="btn-secondary" data-callout="Close Scanner!">スキャンを閉じる</button>
+                        </div>
+                    </div>
+
+                    <p id="codeResult"></p>
+
+                    <button id="resetGameBtn" onclick="resetGame()" class="btn-secondary" data-callout="Play Again!">もう一度プレイ</button>
+                </div>
+            </div>
+
+        </main>
+
+        <script src="プロジェクトファンクション.js"></script>
+
+    </body>
+</html>
