@@ -193,188 +193,65 @@ const visualOptionMeta = {
 const SHARED_SECRET_CODE = ['SEITOKAI', '483433', 'IKEMENKAICHOU', 'SIX SEVEN'];
 
 const questions = [
-    // 大問１: 記述問題
-    { id: 1, category: "大問１", categoryName: "記述問題", type: "riddle", question: "私は毎日、皆さんの近くにあります。朝は輪郭が長く、昼間は短く、夜間は消えてしまいます。私は何でしょう？", answers: ["影", "かげ", "カゲ", "お影", "おかげ"], hint1: "ヒント１: 毎日太陽の動きで変わります", hint2: "ヒント２: 光があれば出現し、光がなければ消えます" },
-    { id: 2, category: "大問１", categoryName: "記述問題", type: "riddle", question: "階段を上っていますが、上に行きません。何でしょう？", answers: ["温度計", "おんどけい", "オンドケイ", "体温計", "たいおんけい"], hint1: "ヒント１: よく見ると数字が増えていきます", hint2: "ヒント２: 医者のところでよく使われます" },
-    // 大問２: 選択問題
-    { id: 3, category: "大問２", categoryName: "選択問題", type: "choice", question: "日本の首都はどこでしょう？", options: ["東京", "大阪", "京都", "福岡"], correctAnswer: "東京", answers: ["東京", "とうきょう", "トウキョウ"], hint1: "ヒント１: 関東地方にあります", hint2: "ヒント２: オリンピックが開催されました" },
-    { id: 4, category: "大問２", categoryName: "選択問題", type: "choice", question: "富士山はどこの県にあるでしょう？", options: ["静岡県", "山梨県", "神奈川県", "岐阜県"], correctAnswer: "静岡県", answers: ["静岡県", "静岡", "しずおかけん", "しずおか"], hint1: "ヒント１: 東海地方の県です", hint2: "ヒント２: お茶で有名な県です" },
-    // 大問３: CAPTCHA
-    { id: 5, category: "大問３", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "3K7M", answers: ["3K7M", "3k7m"], hint1: "ヒント１: 大文字で記入してください", hint2: "ヒント２: 数字は3で始まります" },
-    { id: 6, category: "大問３", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "A5B2", answers: ["A5B2", "a5b2"], hint1: "ヒント１: 全て大文字です", hint2: "ヒント２: Aで始まる2文字が含まれます" },
-    // 大問４: 画像選択
-    { id: 7, category: "大問４", categoryName: "画像選択", type: "visual", question: "次の記号のうち、日本銀行のマークはどれでしょう？", options: ["bank_modern", "bank_historic", "currency_notes", "crossed_flags"], description: "日本銀行", correctAnswer: "bank_historic", answers: ["bank_historic", "歴史的銀行", "日銀", "日本銀行", "建物", "ビル", "historic bank", "bank of japan", "building", "bank", "🏛️", "🏛"], hint1: "ヒント１: 政府の建物に関連しています", hint2: "ヒント２: 古風で格式のあるマークです" },
-    { id: 8, category: "大問４", categoryName: "画像選択", type: "visual", question: "次の記号のうち、警察を表すマークはどれでしょう？", options: ["ambulance", "fire_engine", "police_car", "patrol_cruiser"], description: "警察", correctAnswer: "police_car", answers: ["police_car", "パトカー", "警察", "警察車", "police", "police car", "patrol car", "🚓", "🚔"], hint1: "ヒント１: 赤と白のサイレン車です", hint2: "ヒント２: 犯人を追跡します" },
-    // 大問５: 記述問題
-    { id: 9, category: "大問５", categoryName: "記述問題", type: "riddle", question: "朝みんなを起こすのに、自分は一度も眠りません。私は何でしょう？", answers: ["目覚まし時計", "めざましどけい", "目覚まし", "アラーム", "アラーム時計"], hint1: "ヒント１: 毎朝同じ時間に鳴ります", hint2: "ヒント２: ベルや音楽で知らせます" },
-    { id: 10, category: "大問５", categoryName: "記述問題", type: "riddle", question: "私は文字がたくさん並んでいますが、自分では一言も話しません。私は何でしょう？", answers: ["辞書", "じしょ", "辞典", "じてん"], hint1: "ヒント１: 学校でよく使われます", hint2: "ヒント２: 50音順やアルファベット順に並んでいます" },
-    // 大問６: 選択問題
-    { id: 11, category: "大問６", categoryName: "選択問題", type: "choice", question: "日本で一番高い山はどれでしょう？", options: ["富士山", "立山", "白山", "御嶽山"], correctAnswer: "富士山", answers: ["富士山", "ふじさん", "フジサン"], hint1: "ヒント１: 静岡県と山梨県にまたがっています", hint2: "ヒント２: 標高3776メートルです" },
-    { id: 12, category: "大問６", categoryName: "選択問題", type: "choice", question: "日本の通貨単位はどれでしょう？", options: ["円", "ウォン", "元", "ドル"], correctAnswer: "円", answers: ["円", "えん", "エン"], hint1: "ヒント１: 硬貨と紙幣があります", hint2: "ヒント２: 「¥」の記号で表されます" },
-    // 大問７: CAPTCHA
-    { id: 13, category: "大問７", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "7X2P", answers: ["7X2P", "7x2p"], hint1: "ヒント１: 大文字で記入してください", hint2: "ヒント２: 数字の7から始まります" },
-    { id: 14, category: "大問７", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "Q9L4", answers: ["Q9L4", "q9l4"], hint1: "ヒント１: 全て大文字です", hint2: "ヒント２: Qで始まる文字が含まれます" },
-    // 大問８: 画像選択
-    { id: 15, category: "大問８", categoryName: "画像選択", type: "visual", question: "次の記号のうち、救急車を表すマークはどれでしょう？", options: ["ambulance", "fire_engine", "police_car", "patrol_cruiser"], description: "救急車", correctAnswer: "ambulance", answers: ["ambulance", "救急車", "きゅうきゅうしゃ", "ambulance car", "🚑"], hint1: "ヒント１: 赤十字のマークが描かれています", hint2: "ヒント２: けが人や病人を病院に運びます" },
-    { id: 16, category: "大問８", categoryName: "画像選択", type: "visual", question: "次の記号のうち、消防車を表すマークはどれでしょう？", options: ["fire_engine", "ambulance", "police_car", "patrol_cruiser"], description: "消防車", correctAnswer: "fire_engine", answers: ["fire_engine", "消防車", "しょうぼうしゃ", "fire truck", "fire engine", "🚒"], hint1: "ヒント１: 火事の時に出動します", hint2: "ヒント２: はしごやホースが装備されています" },
-    // 大問９: 記述問題
-    { id: 17, category: "大問９", categoryName: "記述問題", type: "riddle", question: "私は毎年増えていくのに、誰も欲しがりません。私は何でしょう？", answers: ["年齢", "ねんれい", "歳", "とし"], hint1: "ヒント１: 誕生日に必ず変わります", hint2: "ヒント２: 数字で表されます" },
-    { id: 18, category: "大問９", categoryName: "記述問題", type: "riddle", question: "私は冷たいうちは固く、温かくなると柔らかく溶けていきます。私は何でしょう？", answers: ["アイスクリーム", "アイス", "あいすくりーむ"], hint1: "ヒント１: 甘くて夏によく食べられます", hint2: "ヒント２: コーンやカップに入っていることが多いです" },
-    // 大問１０: 選択問題
-    { id: 19, category: "大問１０", categoryName: "選択問題", type: "choice", question: "日本の国花としてよく知られる花はどれでしょう？", options: ["桜", "ひまわり", "チューリップ", "バラ"], correctAnswer: "桜", answers: ["桜", "さくら", "サクラ"], hint1: "ヒント１: 春に咲きます", hint2: "ヒント２: お花見で有名です" },
-    { id: 20, category: "大問１０", categoryName: "選択問題", type: "choice", question: "文化祭が行われる季節としてよくあるのはどれでしょう？", options: ["秋", "冬", "夏", "春"], correctAnswer: "秋", answers: ["秋", "あき", "アキ"], hint1: "ヒント１: 涼しくなってくる季節です", hint2: "ヒント２: 運動会と同じ時期に行われることが多いです" },
-    // 大問１１: CAPTCHA
-    { id: 21, category: "大問１１", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "M3K8", answers: ["M3K8", "m3k8"], hint1: "ヒント１: 大文字で記入してください", hint2: "ヒント２: 数字の3が含まれます" },
-    { id: 22, category: "大問１１", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "5T1D", answers: ["5T1D", "5t1d"], hint1: "ヒント１: 全て大文字です", hint2: "ヒント２: 数字の5から始まります" },
-    // 大問１２: 画像選択
-    { id: 23, category: "大問１２", categoryName: "画像選択", type: "visual", question: "次の記号のうち、現代的な銀行を表すマークはどれでしょう？", options: ["bank_modern", "bank_historic", "currency_notes", "crossed_flags"], description: "現代の銀行", correctAnswer: "bank_modern", answers: ["bank_modern", "現代銀行", "近代的な銀行", "modern bank", "bank", "🏦"], hint1: "ヒント１: 四角いビルの形をしています", hint2: "ヒント２: 円マークが描かれています" },
-    { id: 24, category: "大問１２", categoryName: "画像選択", type: "visual", question: "次の記号のうち、紙幣（お札）を表すマークはどれでしょう？", options: ["currency_notes", "bank_modern", "bank_historic", "crossed_flags"], description: "紙幣", correctAnswer: "currency_notes", answers: ["currency_notes", "紙幣", "お札", "おさつ", "banknotes", "money", "cash", "💴"], hint1: "ヒント１: 緑色で描かれています", hint2: "ヒント２: 円マークが中央にあります" },
-    // 大問１３: 記述問題
-    { id: 25, category: "大問１３", categoryName: "記述問題", type: "riddle", question: "呼ぶと逃げていき、逃げると追いかけてくるものは何でしょう？", answers: ["こだま", "やまびこ", "エコー", "反響"], hint1: "ヒント１: 山で大きな声を出すと聞こえます", hint2: "ヒント２: 自分の声が返ってきます" },
-    { id: 26, category: "大問１３", categoryName: "記述問題", type: "riddle", question: "私は毎日使われるほど、体がだんだん短くなっていきます。私は何でしょう？", answers: ["鉛筆", "えんぴつ", "エンピツ"], hint1: "ヒント１: 勉強の道具です", hint2: "ヒント２: 削ると先が尖ります" },
-    // 大問１４: 選択問題
-    { id: 27, category: "大問１４", categoryName: "選択問題", type: "choice", question: "日本で新幹線が最初に開業したのは、東京とどこの間でしょう？", options: ["大阪", "名古屋", "福岡", "仙台"], correctAnswer: "大阪", answers: ["大阪", "おおさか", "オオサカ"], hint1: "ヒント１: 1964年に開業しました", hint2: "ヒント２: 東京オリンピックが開催された年です" },
-    { id: 28, category: "大問１４", categoryName: "選択問題", type: "choice", question: "日本の多くの学校で新学期が始まる月はどれでしょう？", options: ["4月", "1月", "9月", "3月"], correctAnswer: "4月", answers: ["4月", "四月", "しがつ"], hint1: "ヒント１: 桜が咲く頃です", hint2: "ヒント２: 多くの学校で入学式が行われます" },
-    // 大問１５: CAPTCHA
-    { id: 29, category: "大問１５", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "R6P0", answers: ["R6P0", "r6p0"], hint1: "ヒント１: 大文字で記入してください", hint2: "ヒント２: Rで始まる文字が含まれます" },
-    { id: 30, category: "大問１５", categoryName: "CAPTCHA形式", type: "captcha", question: "画像に含まれる数字と文字を組み合わせて答えてください", captchaText: "8N4W", answers: ["8N4W", "8n4w"], hint1: "ヒント１: 全て大文字です", hint2: "ヒント２: 数字の8から始まります" },
-    // 大問１６: 画像選択
-    { id: 31, category: "大問１６", categoryName: "画像選択", type: "visual", question: "次の記号のうち、旗を表すマークはどれでしょう？", options: ["crossed_flags", "currency_notes", "bank_modern", "bank_historic"], description: "旗", correctAnswer: "crossed_flags", answers: ["crossed_flags", "旗", "はた", "国旗", "flags", "flag", "🎌"], hint1: "ヒント１: 2本の旗が交差しています", hint2: "ヒント２: 黄色い旗竿の先端が丸くなっています" },
-    { id: 32, category: "大問１６", categoryName: "画像選択", type: "visual", question: "次の記号のうち、パトロールを表す紋章はどれでしょう？", options: ["patrol_cruiser", "police_car", "ambulance", "fire_engine"], description: "パトロール紋章", correctAnswer: "patrol_cruiser", answers: ["patrol_cruiser", "パトロール", "巡回", "emblem", "patrol", "🚨"], hint1: "ヒント１: 太陽のような放射状のデザインです", hint2: "ヒント２: 警察に関連するシンボルです" }
+    // ペア1: タイプA1（場所） + タイプB1（特徴）
+    { id: 1, category: "タイプA1", categoryName: "場所", type: "choice", question: "日本で一番大きい湖はどこでしょう？", options: ["琵琶湖", "霞ヶ浦", "サロマ湖", "浜名湖"], correctAnswer: "琵琶湖", answers: ["琵琶湖", "びわこ", "ビワコ"], hint1: "ヒント１: 滋賀県にあります", hint2: "ヒント２: 面積は日本の湖の中で最大です" },
+    { id: 2, category: "タイプB1", categoryName: "特徴", type: "riddle", question: "私は毎朝東からのぼり、夕方には西に沈みます。私は何でしょう？", answers: ["太陽", "たいよう", "タイヨウ", "お日様", "おひさま"], hint1: "ヒント１: 私がいないと世界は真っ暗になります", hint2: "ヒント２: 私のおかげで昼と夜ができます" },
+    // ペア2: タイプA2（場所） + タイプB2（特徴）
+    { id: 3, category: "タイプA2", categoryName: "場所", type: "choice", question: "日本の国会議事堂があるのはどこでしょう？", options: ["東京都千代田区", "大阪市", "京都市", "横浜市"], correctAnswer: "東京都千代田区", answers: ["東京都千代田区", "千代田区", "ちよだく", "東京"], hint1: "ヒント１: 日本の首都にあります", hint2: "ヒント２: 国会議員が集まって話し合う建物です" },
+    { id: 4, category: "タイプB2", categoryName: "特徴", type: "riddle", question: "私には顔と針があり、毎日休まず動き続けますが、生き物ではありません。私は何でしょう？", answers: ["時計", "とけい", "トケイ"], hint1: "ヒント１: 秒針・分針・時針の3本があるものが多いです", hint2: "ヒント２: 壁や腕にかけられています" },
+    // ペア3: タイプA3（場所） + タイプB3（特徴）
+    { id: 5, category: "タイプA3", categoryName: "場所", type: "choice", question: "日本で一番面積が大きい都道府県はどこでしょう？", options: ["北海道", "岩手県", "福島県", "長野県"], correctAnswer: "北海道", answers: ["北海道", "ほっかいどう", "ホッカイドウ"], hint1: "ヒント１: 日本の最北に位置します", hint2: "ヒント２: 面積は2位の岩手県の約5倍です" },
+    { id: 6, category: "タイプB3", categoryName: "特徴", type: "riddle", question: "私は毎日姿を変えるのに、いつも同じ壁に貼られています。私は何でしょう？", answers: ["カレンダー", "かれんだー", "こよみ"], hint1: "ヒント１: 1年365日の予定を確認するのに使います", hint2: "ヒント２: 12枚のページに分かれていることが多いです" },
+    // ペア4: タイプA4（場所） + タイプB4（特徴）
+    { id: 7, category: "タイプA4", categoryName: "場所", type: "choice", question: "京都で毎年7月に行われる、日本三大祭りの一つはどれでしょう？", options: ["祇園祭", "ねぶた祭り", "天神祭", "さっぽろ雪まつり"], correctAnswer: "祇園祭", answers: ["祇園祭", "ぎおんまつり", "ギオンマツリ"], hint1: "ヒント１: 八坂神社のお祭りです", hint2: "ヒント２: 山鉾巡行で有名です" },
+    { id: 8, category: "タイプB4", categoryName: "特徴", type: "riddle", question: "私は口がないのに、たくさんの物語を語りかけます。私は何でしょう？", answers: ["本", "ほん", "書籍", "絵本"], hint1: "ヒント１: ページをめくって読みます", hint2: "ヒント２: 図書室にたくさん並んでいます" }
 ];
 
 // ==========================================
 // ENGLISH TRANSLATIONS & DICTIONARIES
 // ==========================================
 const englishQuestionText = {
-    1: 'I am near you every day. In the morning I am long, in the daytime I am short, and at night I disappear. What am I?',
-    2: 'I climb up and down, but I never move from my place. What am I?',
-    3: 'What is the capital city of Japan?',
-    4: 'Which prefecture is Mount Fuji located in?',
-    5: 'Please enter the characters and numbers shown in the image.',
-    6: 'Please enter the characters and numbers shown in the image.',
-    7: 'Which symbol represents the Bank of Japan?',
-    8: 'Which symbol represents the police?',
-    9: 'I wake everyone up every morning, but I never sleep myself. What am I?',
-    10: 'I have many characters lined up on me, but I never say a word myself. What am I?',
-    11: 'What is the tallest mountain in Japan?',
-    12: 'What is the currency unit of Japan?',
-    13: 'Please enter the characters and numbers shown in the image.',
-    14: 'Please enter the characters and numbers shown in the image.',
-    15: 'Which symbol represents an ambulance?',
-    16: 'Which symbol represents a fire engine?',
-    17: 'I grow bigger every year, but nobody wants more of me. What am I?',
-    18: 'I am hard when I am cold, but I turn soft and melt when I get warm. What am I?',
-    19: 'Which flower is well known as the national flower of Japan?',
-    20: 'Which season do school festivals usually take place in?',
-    21: 'Please enter the characters and numbers shown in the image.',
-    22: 'Please enter the characters and numbers shown in the image.',
-    23: 'Which symbol represents a modern bank?',
-    24: 'Which symbol represents banknotes (paper money)?',
-    25: 'If you call out to it, it runs away, and if you run away, it chases you. What is it?',
-    26: 'The more I am used each day, the shorter my body becomes. What am I?',
-    27: "Between Tokyo and which city did Japan's first shinkansen line open?",
-    28: 'In which month does the new school term usually begin in Japan?',
-    29: 'Please enter the characters and numbers shown in the image.',
-    30: 'Please enter the characters and numbers shown in the image.',
-    31: 'Which symbol represents a flag?',
-    32: 'Which symbol represents a patrol emblem?'
+    1: 'What is the largest lake in Japan?',
+    2: 'I rise in the east every morning and set in the west every evening. What am I?',
+    3: "Where is Japan's National Diet Building located?",
+    4: 'I have a face and hands, and I never stop moving, but I am not alive. What am I?',
+    5: 'Which prefecture has the largest area in Japan?',
+    6: 'I change my appearance every day, but I always hang on the same wall. What am I?',
+    7: 'Which of these is one of the three great festivals of Japan, held every July in Kyoto?',
+    8: 'I have no mouth, yet I tell many stories. What am I?'
 };
 
 const englishOptionMap = {
-    3: ['Tokyo', 'Osaka', 'Kyoto', 'Fukuoka'],
-    4: ['Shizuoka Prefecture', 'Yamanashi Prefecture', 'Kanagawa Prefecture', 'Gifu Prefecture'],
-    7: ['bank_modern', 'bank_historic', 'currency_notes', 'crossed_flags'],
-    8: ['ambulance', 'fire_engine', 'police_car', 'patrol_cruiser'],
-    11: ['Mt. Fuji', 'Mt. Tateyama', 'Mt. Haku', 'Mt. Ontake'],
-    12: ['Yen', 'Won', 'Yuan', 'Dollar'],
-    15: ['ambulance', 'fire_engine', 'police_car', 'patrol_cruiser'],
-    16: ['fire_engine', 'ambulance', 'police_car', 'patrol_cruiser'],
-    19: ['Cherry Blossom', 'Sunflower', 'Tulip', 'Rose'],
-    20: ['Autumn', 'Winter', 'Summer', 'Spring'],
-    23: ['bank_modern', 'bank_historic', 'currency_notes', 'crossed_flags'],
-    24: ['currency_notes', 'bank_modern', 'bank_historic', 'crossed_flags'],
-    27: ['Osaka', 'Nagoya', 'Fukuoka', 'Sendai'],
-    28: ['April', 'January', 'September', 'March'],
-    31: ['crossed_flags', 'currency_notes', 'bank_modern', 'bank_historic'],
-    32: ['patrol_cruiser', 'police_car', 'ambulance', 'fire_engine']
+    1: ['Lake Biwa', 'Lake Kasumigaura', 'Lake Saroma', 'Lake Hamana'],
+    3: ['Chiyoda, Tokyo', 'Osaka City', 'Kyoto City', 'Yokohama City'],
+    5: ['Hokkaido', 'Iwate Prefecture', 'Fukushima Prefecture', 'Nagano Prefecture'],
+    7: ['Gion Festival', 'Nebuta Festival', 'Tenjin Festival', 'Sapporo Snow Festival']
 };
 
 const englishAnswersMap = {
-    1: ['shadow', 'a shadow', 'the shadow', 'shadows', 'my shadow', 'your shadow'],
-    2: ['thermometer', 'a thermometer', 'the thermometer', 'temperature', 'temp gauge', 'temperature gauge', 'mercury thermometer', 'stairs', 'staircase'],
-    3: ['Tokyo', 'tokyo'],
-    4: ['Shizuoka Prefecture', 'Shizuoka', 'Shizuoka pref', 'shizuoka'],
-    5: ['3K7M', '3k7m'],
-    6: ['A5B2', 'a5b2'],
-    7: ['bank_historic', 'bank of japan', 'historic bank', 'building', 'bank', 'classical bank', '🏛️', '🏛'],
-    8: ['police_car', 'police', 'police car', 'patrol car', 'patrol', '🚓', '🚔'],
-    9: ['alarm clock', 'an alarm clock', 'the alarm clock', 'alarm', 'clock'],
-    10: ['dictionary', 'a dictionary', 'the dictionary'],
-    11: ['Mt. Fuji', 'Mount Fuji', 'mt fuji', 'fuji'],
-    12: ['Yen', 'yen', 'japanese yen'],
-    13: ['7X2P', '7x2p'],
-    14: ['Q9L4', 'q9l4'],
-    15: ['ambulance', 'an ambulance', 'the ambulance', 'ambulance car', '🚑'],
-    16: ['fire engine', 'fire truck', 'a fire engine', 'the fire engine', '🚒'],
-    17: ["age", "my age", "your age", "one's age"],
-    18: ['ice cream', 'icecream', 'an ice cream', 'the ice cream'],
-    19: ['Cherry Blossom', 'cherry blossom', 'sakura', 'cherry blossoms'],
-    20: ['Autumn', 'autumn', 'fall'],
-    21: ['M3K8', 'm3k8'],
-    22: ['5T1D', '5t1d'],
-    23: ['modern bank', 'a modern bank', 'bank_modern', 'bank', '🏦'],
-    24: ['banknotes', 'currency notes', 'paper money', 'money', 'cash', '💴'],
-    25: ['echo', 'an echo', 'the echo'],
-    26: ['pencil', 'a pencil', 'the pencil'],
-    27: ['Osaka', 'osaka'],
-    28: ['April', 'april'],
-    29: ['R6P0', 'r6p0'],
-    30: ['8N4W', '8n4w'],
-    31: ['flag', 'flags', 'crossed flags', 'crossed_flags', '🎌'],
-    32: ['patrol emblem', 'patrol', 'patrol_cruiser', 'emblem', '🚨']
+    1: ['Lake Biwa', 'lake biwa', 'biwa lake', 'biwako'],
+    2: ['the sun', 'sun', 'a sun'],
+    3: ['Chiyoda', 'Chiyoda, Tokyo', 'chiyoda ward', 'tokyo'],
+    4: ['clock', 'a clock', 'the clock', 'watch'],
+    5: ['Hokkaido', 'hokkaido'],
+    6: ['calendar', 'a calendar', 'the calendar'],
+    7: ['Gion Festival', 'gion festival', 'gion matsuri'],
+    8: ['book', 'a book', 'the book', 'books', 'picture book']
 };
 
 const englishCorrectAnswerMap = {
-    3: 'Tokyo', 4: 'Shizuoka Prefecture', 7: 'bank_historic', 8: 'police_car',
-    11: 'Mt. Fuji', 12: 'Yen', 15: 'ambulance', 16: 'fire_engine',
-    19: 'Cherry Blossom', 20: 'Autumn', 23: 'bank_modern', 24: 'currency_notes',
-    27: 'Osaka', 28: 'April', 31: 'crossed_flags', 32: 'patrol_cruiser'
+    1: 'Lake Biwa', 3: 'Chiyoda, Tokyo', 5: 'Hokkaido', 7: 'Gion Festival'
 };
 
 const englishHintMap = {
-    1: { hint1: 'Hint 1: I change every day with the movement of the sun.', hint2: 'Hint 2: I appear when there is light, and disappear when there is none.' },
-    2: { hint1: 'Hint 1: Look closely — the numbers go up and down.', hint2: 'Hint 2: You often see one at the doctor\'s office or on a wall.' },
-    3: { hint1: 'Hint 1: It is in the Kanto region.', hint2: 'Hint 2: The Olympic Games were held here.' },
-    4: { hint1: 'Hint 1: It is a prefecture in the Tokai region.', hint2: 'Hint 2: This prefecture is famous for green tea.' },
-    5: { hint1: 'Hint 1: Enter it in capital letters.', hint2: 'Hint 2: The code starts with the number 3.' },
-    6: { hint1: 'Hint 1: Everything is in capital letters.', hint2: 'Hint 2: It includes two letters starting with A.' },
-    7: { hint1: 'Hint 1: It is related to a classical government building.', hint2: 'Hint 2: It is a dignified historic architectural symbol.' },
-    8: { hint1: 'Hint 1: A car equipped with red flashing emergency lights.', hint2: 'Hint 2: It patrols the streets and responds to emergency calls.' },
-    9: { hint1: 'Hint 1: It rings at the same time every morning.', hint2: 'Hint 2: It lets you know with a bell or music.' },
-    10: { hint1: 'Hint 1: It is often used at school.', hint2: 'Hint 2: Its entries are arranged in alphabetical order.' },
-    11: { hint1: 'Hint 1: It sits on the border of Shizuoka and Yamanashi.', hint2: 'Hint 2: It stands 3,776 meters tall.' },
-    12: { hint1: 'Hint 1: It comes in coins and banknotes.', hint2: 'Hint 2: It is shown with the "¥" symbol.' },
-    13: { hint1: 'Hint 1: Enter it in capital letters.', hint2: 'Hint 2: The code starts with the number 7.' },
-    14: { hint1: 'Hint 1: Everything is in capital letters.', hint2: 'Hint 2: It includes a letter starting with Q.' },
-    15: { hint1: 'Hint 1: It has a red cross symbol on it.', hint2: 'Hint 2: It carries injured or sick people to the hospital.' },
-    16: { hint1: 'Hint 1: It is dispatched when there is a fire.', hint2: 'Hint 2: It is equipped with a ladder and hoses.' },
-    17: { hint1: 'Hint 1: It always changes on your birthday.', hint2: 'Hint 2: It is represented by a number.' },
-    18: { hint1: 'Hint 1: It is sweet and often eaten in summer.', hint2: 'Hint 2: It is often served in a cone or a cup.' },
-    19: { hint1: 'Hint 1: It blooms in spring.', hint2: 'Hint 2: It is famous for flower-viewing parties.' },
-    20: { hint1: 'Hint 1: It is a season when the weather starts to cool down.', hint2: 'Hint 2: It often happens around the same time as sports day.' },
-    21: { hint1: 'Hint 1: Enter it in capital letters.', hint2: 'Hint 2: It includes the number 3.' },
-    22: { hint1: 'Hint 1: Everything is in capital letters.', hint2: 'Hint 2: The code starts with the number 5.' },
-    23: { hint1: 'Hint 1: It is shaped like a square building.', hint2: 'Hint 2: It has a yen symbol drawn on it.' },
-    24: { hint1: 'Hint 1: It is drawn in green.', hint2: 'Hint 2: A yen symbol sits in the middle.' },
-    25: { hint1: 'Hint 1: You hear it after shouting loudly in the mountains.', hint2: 'Hint 2: It is your own voice coming back to you.' },
-    26: { hint1: 'Hint 1: It is a tool used for studying.', hint2: 'Hint 2: Sharpening it makes the tip pointy.' },
-    27: { hint1: 'Hint 1: It opened in 1964.', hint2: 'Hint 2: That is the year the Tokyo Olympics were held.' },
-    28: { hint1: 'Hint 1: It is around the time cherry blossoms bloom.', hint2: 'Hint 2: Many schools hold entrance ceremonies then.' },
-    29: { hint1: 'Hint 1: Enter it in capital letters.', hint2: 'Hint 2: It includes a letter starting with R.' },
-    30: { hint1: 'Hint 1: Everything is in capital letters.', hint2: 'Hint 2: The code starts with the number 8.' },
-    31: { hint1: 'Hint 1: Two flags are crossed over each other.', hint2: 'Hint 2: The tips of the yellow flagpoles are rounded.' },
-    32: { hint1: 'Hint 1: It has a sunburst-like radial design.', hint2: 'Hint 2: It is a symbol related to the police.' }
+    1: { hint1: 'Hint 1: It is in Shiga Prefecture.', hint2: 'Hint 2: It is the largest lake in Japan by area.' },
+    2: { hint1: 'Hint 1: Without me, the world would be pitch dark.', hint2: 'Hint 2: I am the reason day and night exist.' },
+    3: { hint1: "Hint 1: It is in Japan's capital city.", hint2: 'Hint 2: It is the building where members of the Diet gather to discuss laws.' },
+    4: { hint1: 'Hint 1: Most of us have three hands: second, minute, and hour.', hint2: 'Hint 2: We are often hung on a wall or worn on a wrist.' },
+    5: { hint1: 'Hint 1: It is located at the northernmost tip of Japan.', hint2: 'Hint 2: Its area is about 5 times that of Iwate, the second largest.' },
+    6: { hint1: 'Hint 1: It is used to keep track of the 365 days of the year.', hint2: 'Hint 2: It is often split into 12 pages, one per month.' },
+    7: { hint1: 'Hint 1: It is a festival of Yasaka Shrine.', hint2: 'Hint 2: It is famous for its Yamaboko float procession.' },
+    8: { hint1: 'Hint 1: You read me by turning pages.', hint2: 'Hint 2: You can find lots of me in a library.' }
 };
 
 const translations = {
@@ -383,14 +260,14 @@ const translations = {
         menuText: 'ようこそ！このゲームをプレイしますか？',
         rulesTitle: 'ゲームルール',
         rules: [
-            '全16組の謎解きに挑戦！4組クリアで認定スタンプをGET！🔍✨',
+            '全4組の謎解きに挑戦！各組は「場所」と「特徴」のペアで固定されています🔍✨',
             '各問題に対して正しい答えを入力してください',
             '1ページに2問ずつ出題され、1問目を正解すると2問目が開きます',
             'ペア（1ページ2問）をクリアするごとにスタンプが1つ増えます（全部で4つ！）',
             'すべてのなぞなぞとコードをクリアして、宝箱を開ける！',
-            '毎回異なる問題が出題されます'
+            '出題される4組の順番は毎回ランダムですが、各組のペア（場所と特徴）は必ず一緒に出ます'
         ],
-        menuDescription: 'ランダムで選ばれた問題をすべて解いてみよう！',
+        menuDescription: '「場所」と「特徴」がペアになった4組の問題をすべて解いてみよう！',
         startGame: 'ゲーム開始！',
         language: 'Language',
         questionNumPrefix: '問題',
@@ -447,14 +324,14 @@ const translations = {
         menuText: 'Welcome! Would you like to play this game?',
         rulesTitle: 'Game Rules',
         rules: [
-            'Out of the 16 pairs of question, solve the 4 pairs to get Stamps for certification!',
-            'Two questions appear on each page',
-            'Question 2 unlocks only after Question 1 is correct',
+            'Solve 4 fixed pairs of riddles! Each pair is a locked "Location" + "Feature" set 🔍✨',
+            'Enter the correct answer for each question',
+            'Two questions appear on each page; Question 2 unlocks after Question 1 is correct',
             'You earn 1 stamp every time you solve a pair page (4 stamps total!)',
             'Clear all riddles and secret codes to unlock the treasure!',
-            'A different set of questions appears each playthrough'
+            'The order of the 4 pairs is randomized each time, but each pair (Location + Feature) always stays together'
         ],
-        menuDescription: 'Solve the randomly picked riddles!',
+        menuDescription: 'Solve all 4 fixed pairs, each combining a "Location" question with a "Feature" riddle!',
         startGame: 'Start Game!',
         language: 'Language',
         questionNumPrefix: 'Question',
@@ -534,33 +411,23 @@ let gameState = {
     intermediateQrScannerStream: null
 };
 
-//this shit could work but who knows
-//below this shit shows what kind of answer was at the previous quiz or sum-ting
-localStorage.setItem("previousPairAnswer", userAnswer);
-
-function submitQuestion1() {
-    const userAnswer = document.getElementById("answerInput").value.trim();
-
-    if (userAnswer === QUESTIONS[currentQuestion].answer) {
-        // save the first one
-        localStorage.setItem("previousPairAnswer", userAnswer);
-
-        //second one ig
-        showQuestion2();
+// Helper Functions
+function getDisplayAnswer(question, rawAnswer) {
+    if (question && question.type === 'visual') {
+        const meta = visualOptionMeta[rawAnswer];
+        return meta ? (meta[gameState.language] || meta.ja) : rawAnswer;
     }
-} 
-
-function showStamp() {
-    const previousAnswer =
-    localStorage.getItem("previousPairAnswer") || "No Answer Recorded!!!";
-    
-    document.getElementById("previousAnswer").textContent = previousAnswer;
-
-    //show ze stamp screen
-    document.getElementById("stampScreen").style.display = "block";
+    return rawAnswer;
 }
 
-// Helper Functions
+function formatPairAnswers() {
+    const labelA = gameState.language === 'en' ? 'A' : 'A';
+    const labelB = gameState.language === 'en' ? 'B' : 'B';
+    const a = gameState.lastPairAnswerA || (gameState.language === 'en' ? '(no answer)' : '（未回答）');
+    const b = gameState.lastPairAnswerB || (gameState.language === 'en' ? '(no answer)' : '（未回答）');
+    return `${labelA}: ${a}　／　${labelB}: ${b}`;
+}
+
 function shuffleArray(array) {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -570,8 +437,14 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-function selectRandomQuestions(allQuestions, count = 8) {
-    return shuffleArray(allQuestions).slice(0, count);
+function shufflePairsKeepingOrder(allQuestions) {
+    // Group into fixed [A, B] pairs, then shuffle which pair comes first —
+    // but always keep each pair's two questions glued together, in order.
+    const pairs = [];
+    for (let i = 0; i < allQuestions.length; i += 2) {
+        pairs.push([allQuestions[i], allQuestions[i + 1]]);
+    }
+    return shuffleArray(pairs).flat();
 }
 
 function showScreen(screenName) {
@@ -721,7 +594,7 @@ function startGame() {
         stampTray.classList.remove('hidden');
     }
 
-    gameState.questionSequence = selectRandomQuestions(questions, 8);
+    gameState.questionSequence = shufflePairsKeepingOrder(questions); // pair order is randomized, but each pair's A+B stay glued together
     showScreen('questionScreen');
     renderQuestionPair();
 }
@@ -985,18 +858,22 @@ function checkAnswer(slot) {
 
         if (slot === 0) {
             gameState.q1Correct = true;
+            gameState.lastPairAnswerA = getDisplayAnswer(question, userAnswer);
             celebrateCorrectAnswer();
             setQuestion2Locked(false);
         } else {
             // Give a stamp mark upon completing the pair of quizzes
             addStamp();
             celebrateCorrectAnswer();
+            gameState.lastPairAnswerB = getDisplayAnswer(question, userAnswer);
 
             setTimeout(() => {
                 // Route to intermediate secret code screen before advancing to next pair
                 gameState.stage = 'intermediateCode';
                 showScreen('intermediateCodeScreen');
                 applyLanguageUI();
+                const prevEl = document.getElementById('previousAnswerText');
+                if (prevEl) prevEl.textContent = formatPairAnswers();
             }, 900);
         }
         return;
@@ -1140,7 +1017,12 @@ function submitCode() {
 }
 
 function submitIntermediateCode() {
+    // Guard against button-mashing: ignore new submits while a correct
+    // code is already mid-transition to the next screen.
+    if (gameState.isCooldown) return;
+
     const input = document.getElementById('intermediateCodeInput');
+    const submitBtn = document.getElementById('intermediateSubmitBtn');
     const codeInput = input ? input.value.trim() : '';
     const codeResultElement = document.getElementById('intermediateCodeResult');
     const activeT = translations[gameState.language] || translations.ja;
@@ -1153,13 +1035,18 @@ function submitIntermediateCode() {
     }
 
     if (isCodeValid(codeInput)) {
+        gameState.isCooldown = true;
+        if (submitBtn) submitBtn.disabled = true;
+
         codeResultElement.textContent = activeT.intermediateCodeSuccess;
         codeResultElement.style.color = 'green';
 
         setTimeout(() => {
             if (input) input.value = '';
             codeResultElement.textContent = '';
-            
+            gameState.isCooldown = false;
+            if (submitBtn) submitBtn.disabled = false;
+
             if (gameState.pairPage < 3) {
                 gameState.pairPage++;
                 gameState.currentQuestion = gameState.pairPage * 2;
@@ -1171,6 +1058,8 @@ function submitIntermediateCode() {
                 gameState.stage = 'finalCode';
                 showScreen('codeScreen');
                 applyLanguageUI();
+                const finalPrevEl = document.getElementById('finalPreviousAnswerText');
+                if (finalPrevEl) finalPrevEl.textContent = formatPairAnswers();
             }
         }, 1000);
     } else {
